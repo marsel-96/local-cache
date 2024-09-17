@@ -9,7 +9,7 @@ inputs:
     required: true
 runs:
   using: 'node20'
-  main: '../dist/saveOnly.js'
+  main: '../dist/save/index.js'
 branding:
   icon: 'archive'
   color: 'gray-dark'

@@ -26,7 +26,7 @@ jobs:
 
     - name: Cache Primes
       id: cache-primes
-      uses: marsel-96/cache-self-hosted@v1
+      uses: marsel-96/local-cache@v1
       with:
         path: prime-numbers
         key: ${{ runner.os }}-primes
