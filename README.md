@@ -26,7 +26,7 @@ jobs:
 
     - name: Cache Primes
       id: cache-primes
-      uses: maxnowack/local-cache@v2
+      uses: marsel-96/cache-self-hosted@v1
       with:
         path: prime-numbers
         key: ${{ runner.os }}-primes
@@ -39,11 +39,6 @@ jobs:
       run: /primes.sh -d prime-numbers
 
 ````
-
-## Contributing
-
-Contributions to the project are welcome. Feel free to fork and improve. I do my best accept pull requests in a timely manor, especially when tests and updated docs are included.
-
 ## License
 
 The code in this project is released under the [MIT License](LICENSE)
