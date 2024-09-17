@@ -1,4 +1,4 @@
-name: 'local-cache'
+name: 'cache-self-hosted'
 description: "Github Action to provide caching data by placing a tarball on the local filesystem"
 inputs:
   path:
