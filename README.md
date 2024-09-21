@@ -1,44 +1,37 @@
-# local-cache
-GitHub Actions to provide caching data by placing a tarball on the local filesystem. The goal of this action is to speed up saving and restoring of the cache and remove the http overhead that occurs when using the `actions/cache` action.
-This action is designed for use with runners that have persistent storage. Please only use this action with self-hosted runners that have a persistent volume. It will not work properly on GitHub hosted runners or runners with ephemeral storage, as the cache will be deleted upon job completion.
+# Unity CI Self Hosted Cache
 
-## Usage
+# Package
+```
+npm run package'
+```
 
-The actions is designed as a drop-in replacement for `actions/cache@v3`. Take a look at their documentation. You can adapt the usage from their and use all of the features.
+# Test Script Locally
 
-The created cache tarballs are placed in `$RUNNER_TOOL_CACHE/$GITHUB_REPOSITORY`.
-`GITHUB_REPOSITORY` will be set to the name (`org/repo`) of the repository from where the action is executed. 
-`RUNNER_TOOL_CACHE` defaults to `/opt/hostedtoolcache`. This should point to a folder on a persistent storage.
+### Install ts-node
+```
+npm install -g ts-node typescript '@types/node'
+```
 
-### Example cache workflow
+### Set environment variables
+```
+$env:GITHUB_WORKSPACE = 'C:\Users\marco\Desktop\actions-runner\_work\test-game-ci\test-game-ci'
 
-````yaml
-name: Caching Primes
+$env:INPUT_STORAGE = 'google'
+$env:INPUT_LOCALDESTINATIONFOLDER = 'C:\Users\marco\Desktop'
 
-on: push
+$env:INPUT_BUILDFOLDERFULLPATH = 'C:\Users\marco\Desktop\actions-runner\_work\test-game-ci\test-game-ci\build'
+$env:INPUT_ARCHIVEFOLDER = 'archive'
+$env:INPUT_ARCHIVEFILENAME = 'test.zip'
 
-jobs:
-  build:
-    runs-on: self-hosted
+$env:INPUT_GOOGLEOAUTHCLIENTID = ''
+$env:INPUT_GOOGLEOAUTHCLIENTSECRET = ''
+$env:INPUT_GOOGLEOAUTHREDIRECTURI = 'https://developers.google.com/oauthplayground'
+$env:INPUT_GOOGLEOAUTHREFRESHTOKEN = ''
+$env:INPUT_GOOGLEFOLDERID = ''
+```
 
-    steps:
-    - uses: actions/checkout@v4
+### Run index.ts
 
-    - name: Cache Primes
-      id: cache-primes
-      uses: marsel-96/local-cache@v1
-      with:
-        path: prime-numbers
-        key: ${{ runner.os }}-primes
-
-    - name: Generate Prime Numbers
-      if: steps.cache-primes.outputs.cache-hit != 'true'
-      run: /generate-primes.sh -d prime-numbers
-
-    - name: Use Prime Numbers
-      run: /primes.sh -d prime-numbers
-
-````
-## License
-
-The code in this project is released under the [MIT License](LICENSE)
+```
+ts-node src/index.ts
+```

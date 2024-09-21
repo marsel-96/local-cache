@@ -1,4 +1,4 @@
-name: 'cache-self-hosted'
+name: 'unity-ci-self-hosted-cache'
 description: "Github Action to provide caching data by placing a tarball on the local filesystem"
 inputs:
   path:

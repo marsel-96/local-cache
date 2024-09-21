@@ -1,30 +1,20 @@
 {
-  "name": "local-cache",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Github Action to provide caching data by placing a tarball on the local filesystem",
-  "main": "dist/main/index.ts",
-  "engines": {
-    "node": "^20.11.0"
-  },
-  "scripts": {
-    "prepare": "npm run build",
-    "lint": "eslint src/**.ts --max-warnings=0",
-    "test": "npm run build && npm run type-check && jest --runInBand",
-    "build": "rimraf ./dist && tsc",
-    "type-check": "tsc --noEmit"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/maxnowack/local-cache.git"
-  },
+  "name": "unity-ci-self-hosted-cache",
+  "description": "Unity CI Self Hosted Cache",
+  "version": "0.1.0",  
+  "author": "Marco Selleri <marco.selleri96@gmail.com>",
   "keywords": [
     "actions",
     "node",
     "self-hosted",
     "runner"
   ],
-  "author": "Max Nowack <max.nowack@gmail.com>",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "package": "npx ncc build src/save.ts -o dist/save --source-map --license licenses.txt && npx ncc build src/restore.ts -o dist/restore --source-map --license licenses.txt;"
+  },
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.10.0",
